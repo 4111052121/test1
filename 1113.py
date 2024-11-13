@@ -9,7 +9,7 @@ data = pd.read_csv(url, header=1)  # 指定第二行作為標題行
 # 檢查缺失值
 print("缺失值檢查：")
 print(data.isnull().sum())
-
+  
 # 檢查數據前幾行和列名
 print(data.head())
 print(data.columns)
