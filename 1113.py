@@ -6,7 +6,7 @@ from sklearn.linear_model import LinearRegression
 url = 'https://github.com/scikit-learn/scikit-learn/raw/main/sklearn/datasets/data/boston_house_prices.csv'
 data = pd.read_csv(url, header=1)  # 指定第二行作為標題行
 
-# 檢查缺失值
+# 檢查缺失值   
 print("缺失值檢查：")
 print(data.isnull().sum())
   
