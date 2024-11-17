@@ -36,6 +36,7 @@ data['Price_Range'] = pd.cut(data['MEDV'], bins=price_bins)
 price_distribution = data['Price_Range'].value_counts().sort_index()
 
 # 繪製條形圖
+# 建立畫布
 plt.figure(figsize=(10, 6))
 plt.bar(["0~10", "10~20", "20~30", "30~40", "40~50"], price_distribution.values, color='skyblue')
 plt.title('Distributions of House Prices')
@@ -68,6 +69,7 @@ model.fit(X, y)
 
 # 預測
 predictions = model.predict(X)
+
 
 # 繪製預測結果
 plt.figure(figsize=(10, 6))
