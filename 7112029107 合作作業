@@ -1,0 +1,45 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
+
+# 1. 資料讀取與預處理
+def load_and_preprocess(file_path):
+    data = pd.read_csv(file_path, sep=";")
+    data["loan"] = data["loan"].map({"yes": 1, "no": 0})
+    data["y"] = data["y"].map({"yes": 1, "no": 0})
+    return data
+
+train_data = load_and_preprocess("train.csv")
+test_data = load_and_preprocess("test.csv")
+
+# 2. 特徵與目標變數分離
+X_train = train_data[["age", "balance", "loan"]]
+y_train = train_data["y"]
+X_test = test_data[["age", "balance", "loan"]]
+y_test = test_data["y"]
+
+# 3. 資料分析（可視化特徵與目標變數的關係）
+def plot_feature_distributions(data, features, target):
+    for feature in features:
+        plt.figure(figsize=(8, 5))
+        sns.countplot(data=data, x=feature, hue=target, palette="Set2")
+        plt.title(f"{feature.capitalize()} vs {target}")
+        plt.xlabel(feature.capitalize())
+        plt.ylabel("Count")
+        plt.legend(title=target, labels=["No", "Yes"])
+        plt.xticks(rotation=45)
+        plt.tight_layout()
+        plt.show()
+
+plot_feature_distributions(train_data, ["age", "job", "marital", "education", "loan"], "y")
+
+# 4. 模型訓練與測試
+model = LogisticRegression()
+model.fit(X_train, y_train)
+y_pred = model.predict(X_test)
+
+# 5. 結果輸出
+accuracy = accuracy_score(y_test, y_pred)
+print(f"模型準確度: {accuracy:.2%}")
