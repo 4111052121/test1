@@ -5,8 +5,8 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
 
 # 1. 匯入資料
-train_file_path = "C:\\Users\\user\\Desktop\\train.csv"
-test_file_path = "C:\\Users\\user\\Desktop\\test.csv"
+train_file_path = "C:\\Users\\user\\Desktop\\train.csv" # 訓練資料檔案路徑
+test_file_path = "C:\\Users\\user\\Desktop\\test.csv" # 測試資料檔案路徑
 
 train_df = pd.read_csv(train_file_path, sep=';', header=0)
 test_df = pd.read_csv(test_file_path, sep=';', header=0)
@@ -59,7 +59,7 @@ def plot_horizontal_bars(df, feature, target='y'):
     plt.yticks([i + bar_height / 2 for i in y], count.index)
     plt.legend()
     plt.grid(axis='x', linestyle='--', alpha=0.7)
-    plt.tight_layout()
+    plt.tight_layout()  
     plt.show()
 
 # 繪製年齡區間的長條圖
